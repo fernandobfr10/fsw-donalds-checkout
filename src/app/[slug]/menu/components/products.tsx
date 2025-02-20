@@ -1,18 +1,23 @@
+'use client'
+import { formatCurrency } from '@/helpers/format-currency'
 import type { Product } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 interface RestaurantMenuProductsProps {
   products: Product[]
 }
 
 const RestaurantMenuProducts = ({ products }: RestaurantMenuProductsProps) => {
+  const { slug } = useParams<{ slug: string }>()
+
   return (
     <div className="space-y-3 px-5">
       {products.map(product => (
         <Link
           key={product.id}
-          href="/"
+          href={`/${slug}/menu/${product.id}`}
           className="flex items-center justify-between gap-10 border-b py-3"
         >
           <div>
@@ -21,10 +26,7 @@ const RestaurantMenuProducts = ({ products }: RestaurantMenuProductsProps) => {
               {product.description}
             </p>
             <p className="pt-3 text-sm font-semibold">
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              }).format(product.price)}
+              {formatCurrency(product.price)}
             </p>
           </div>
 
