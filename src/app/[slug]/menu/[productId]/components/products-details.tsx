@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { formatCurrency } from '@/helpers/format-currency'
 import { IngredientsList } from './ingredients-list'
 
@@ -37,8 +38,8 @@ const ProductsDetails = ({ product }: ProductsDetailsProps) => {
   }
 
   return (
-    <div className="relative z-50 rounded-t-3xl py-5 mt-[-1.5rem] p-5 flex-auto flex flex-col">
-      <div className="flex-auto">
+    <div className="relative z-50 rounded-t-3xl py-5 mt-[-1.5rem] p-5 flex-auto flex flex-col overflow-hidden">
+      <div className="flex-auto overflow-hidden">
         <div className="flex items-center gap-1">
           <Image
             src={product.restaurant.avatarImageUrl}
@@ -54,7 +55,7 @@ const ProductsDetails = ({ product }: ProductsDetailsProps) => {
 
         <h2 className="text-xl font-semibold mt-1">{product.name}</h2>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mt-3">
           <h3 className="text-xl font-semibold">
             {formatCurrency(product.price)}
           </h3>
@@ -80,22 +81,26 @@ const ProductsDetails = ({ product }: ProductsDetailsProps) => {
           </div>
         </div>
 
-        <div className="mt-6 space-y-3">
-          <h4 className="font-semibold">Sobre</h4>
-          <p className="text-sm text-muted-foreground">{product.description}</p>
-        </div>
-
-        <div className="mt-6 space-y-3">
-          <div className="flex items-center gap-1">
-            <ChefHatIcon size={18} />
-            <h4 className="font-semibold">Ingredientes</h4>
+        <ScrollArea className="h-full">
+          <div className="mt-6 space-y-3">
+            <h4 className="font-semibold">Sobre</h4>
+            <p className="text-sm text-muted-foreground">
+              {product.description}
+            </p>
           </div>
 
-          <IngredientsList ingredients={product.ingredients} />
-        </div>
+          <div className="mt-6 space-y-3">
+            <div className="flex items-center gap-1">
+              <ChefHatIcon size={18} />
+              <h4 className="font-semibold">Ingredientes</h4>
+            </div>
+
+            <IngredientsList ingredients={product.ingredients} />
+          </div>
+        </ScrollArea>
       </div>
 
-      <Button className="rounded-full w-full mt-6">Adicionar à sacola</Button>
+      <Button className="rounded-full w-full mt-5">Adicionar à sacola</Button>
     </div>
   )
 }

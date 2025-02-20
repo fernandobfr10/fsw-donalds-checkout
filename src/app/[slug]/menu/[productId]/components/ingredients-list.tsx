@@ -4,12 +4,9 @@ interface IngredientsListProps {
 
 const IngredientsList = ({ ingredients }: IngredientsListProps) => {
   return (
-    <ul className="pl-5">
+    <ul className="list-disc px-5 text-sm text-muted-foreground">
       {ingredients.map(ingredient => (
-        <li
-          key={ingredient}
-          className="text-sm text-muted-foreground list-disc"
-        >
+        <li key={ingredient} className="">
           {ingredient}
         </li>
       ))}
