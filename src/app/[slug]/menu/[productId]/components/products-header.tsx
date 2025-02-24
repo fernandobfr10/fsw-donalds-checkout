@@ -11,7 +11,7 @@ interface ProductsHeaderProps {
   product: Pick<Product, 'imageUrl' | 'name'>
 }
 
-const ProductsHeader = ({ product }: ProductsHeaderProps) => {
+export const ProductsHeader = ({ product }: ProductsHeaderProps) => {
   const router = useRouter()
 
   const handleGoBack = () => router.back()
@@ -43,5 +43,3 @@ const ProductsHeader = ({ product }: ProductsHeaderProps) => {
     </div>
   )
 }
-
-export default ProductsHeader

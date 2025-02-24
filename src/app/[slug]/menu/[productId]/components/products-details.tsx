@@ -26,7 +26,7 @@ interface ProductsDetailsProps {
   }>
 }
 
-const ProductsDetails = ({ product }: ProductsDetailsProps) => {
+export const ProductsDetails = ({ product }: ProductsDetailsProps) => {
   const [quantity, setQuantity] = useState<number>(1)
 
   const { toogleCart, addProductToCart } = useCart()
@@ -122,5 +122,3 @@ const ProductsDetails = ({ product }: ProductsDetailsProps) => {
     </>
   )
 }
-
-export default ProductsDetails

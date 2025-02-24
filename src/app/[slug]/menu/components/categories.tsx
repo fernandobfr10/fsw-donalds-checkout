@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
-import RestaurantMenuProducts from './products'
+import { RestaurantMenuProducts } from './products'
 
 interface RestaurantMenuCategoriesProps {
   restaurant: Prisma.RestaurantGetPayload<{
@@ -27,7 +27,7 @@ type MenuCategoriesWithProducts = Prisma.MenuCategoryGetPayload<{
   }
 }>
 
-const RestaurantMenuCategories = ({
+export const RestaurantMenuCategories = ({
   restaurant,
 }: RestaurantMenuCategoriesProps) => {
   const [selectedCategory, setSelectedCategory] =
@@ -87,5 +87,3 @@ const RestaurantMenuCategories = ({
     </div>
   )
 }
-
-export { RestaurantMenuCategories }

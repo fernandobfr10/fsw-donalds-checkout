@@ -9,7 +9,9 @@ interface RestaurantMenuProductsProps {
   products: Product[]
 }
 
-const RestaurantMenuProducts = ({ products }: RestaurantMenuProductsProps) => {
+export const RestaurantMenuProducts = ({
+  products,
+}: RestaurantMenuProductsProps) => {
   const { slug } = useParams<{ slug: string }>()
 
   return (
@@ -43,5 +45,3 @@ const RestaurantMenuProducts = ({ products }: RestaurantMenuProductsProps) => {
     </div>
   )
 }
-
-export default RestaurantMenuProducts

@@ -3,16 +3,16 @@
 import type { Product } from '@prisma/client'
 import { type ReactNode, createContext, useContext, useState } from 'react'
 
-interface CardProduct
+export interface CartProduct
   extends Pick<Product, 'id' | 'name' | 'price' | 'imageUrl'> {
   quantity: number
 }
 
 export interface ICartContext {
   isOpen: boolean
-  products: CardProduct[]
+  products: CartProduct[]
   toogleCart: () => void
-  addProductToCart: (product: CardProduct) => void
+  addProductToCart: (product: CartProduct) => void
 }
 
 const initialState: ICartContext = {
@@ -24,14 +24,14 @@ const initialState: ICartContext = {
 export const CartContext = createContext<ICartContext>(initialState)
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [products, setProducts] = useState<CardProduct[]>(initialState.products)
+  const [products, setProducts] = useState<CartProduct[]>(initialState.products)
   const [isOpen, setIsOpen] = useState(initialState.isOpen)
 
   const toogleCart = () => {
     setIsOpen(prevValue => !prevValue)
   }
 
-  const addProductToCart = (product: CardProduct) => {
+  const addProductToCart = (product: CartProduct) => {
     setProducts(prevProducts => {
       const existingProduct = prevProducts.find(
         cartProduct => cartProduct.id === product.id

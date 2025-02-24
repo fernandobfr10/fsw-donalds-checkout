@@ -11,7 +11,9 @@ interface RestaurantMenuHeaderProps {
   restaurant: Pick<Restaurant, 'coverImageUrl' | 'name'>
 }
 
-const RestaurantMenuHeader = ({ restaurant }: RestaurantMenuHeaderProps) => {
+export const RestaurantMenuHeader = ({
+  restaurant,
+}: RestaurantMenuHeaderProps) => {
   const router = useRouter()
 
   const handleGoBack = () => router.back()
@@ -44,5 +46,3 @@ const RestaurantMenuHeader = ({ restaurant }: RestaurantMenuHeaderProps) => {
     </div>
   )
 }
-
-export { RestaurantMenuHeader }

@@ -1,32 +1,29 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
 
 import { useCart } from '../contexts/cart'
+import { CartProductItem } from './cart-product-item'
 
-const CartSheet = () => {
+export const CartSheet = () => {
   const { isOpen, toogleCart, products } = useCart()
 
   return (
     <Sheet open={isOpen} onOpenChange={toogleCart}>
-      <SheetContent>
-        <SheetHeader>
-          <SheetTitle>Teste</SheetTitle>
-          <SheetDescription>This action cannot be undone.</SheetDescription>
+      <SheetContent className="w-[80%] max-w-[400px]">
+        <SheetHeader className="mb-5">
+          <SheetTitle className="text-left">Sacola</SheetTitle>
         </SheetHeader>
 
-        {products.map(product => (
-          <h1 key={product.id}>
-            {product.name} - {product.quantity}
-          </h1>
-        ))}
+        <div className="space-y-4">
+          {products.map(product => (
+            <CartProductItem key={product.id} product={product} />
+          ))}
+        </div>
       </SheetContent>
     </Sheet>
   )
 }
-
-export { CartSheet }

@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 
 import { db } from '@/lib/prisma'
-import ProductsDetails from './components/products-details'
-import ProductsHeader from './components/products-header'
+import { ProductsDetails } from './components/products-details'
+import { ProductsHeader } from './components/products-header'
 
 interface ProductPageProps {
   params: Promise<{

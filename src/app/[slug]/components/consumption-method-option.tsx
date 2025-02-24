@@ -14,7 +14,7 @@ interface ConsumptionMethodOptionProps {
   slug: string
 }
 
-const ConsumptionMethodOption = ({
+export const ConsumptionMethodOption = ({
   imageUrl,
   imageAlt,
   buttonText,
@@ -42,5 +42,3 @@ const ConsumptionMethodOption = ({
     </Card>
   )
 }
-
-export { ConsumptionMethodOption }
