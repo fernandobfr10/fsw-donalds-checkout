@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FSW Donalds - Fast Food Self-Service System
+
+## About the Project
+
+FSW Donalds is a modern self-service ordering system for a fast-food restaurant, built with Next.js and TypeScript. The application allows customers to browse menus, customize orders, and place them directly through a digital interface, enhancing the ordering experience.
+
+## Key Features
+
+- Digital menu with categories and product details
+- Real-time cart management
+- Two consumption methods: Dine-in and Takeaway
+- Product customization options
+- Integration with PostgreSQL database
+
+## Technologies Used
+
+- Frontend:
+  - Next.js 15.1.6
+  - React 19
+  - TypeScript
+  - Tailwind CSS
+  - Shadcn UI
+  - Lucide React (Icons)
+
+- Backend:
+  - Prisma ORM
+  - PostgreSQL
+  - Docker
+
+- Development Tools:
+  - Biome (Linting and Formatting)
+
+## Prerequisites
+
+Before you begin, ensure you have installed:
+
+- Node.js
+- Docker and Docker Compose
+- NPM
 
 ## Getting Started
 
-First, run the development server:
-
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/fsw-donalds.git
+cd fsw-donalds
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+- Copy the `.env.example` file to `.env`
+- Update the variables according to your setup
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Start the PostgreSQL database using Docker:
+```bash
+docker compose up -d
+```
 
-## Learn More
+5. Run Prisma migrations to create the database schema:
+```bash
+npx prisma migrate dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Seed the database with initial data:
+```bash
+npx prisma db seed
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+7. Start the development server:
+```bash
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+8. (Optional) Open Prisma Studio to manage database:
+```bash
+npx prisma studio
+```
 
-## Deploy on Vercel
+The application will be available at `http://localhost:3000`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project follows a feature-based structure:
+
+```
+src/
+├── app/                # Next.js app router pages
+├── components/         # Shared components
+├── lib/                # Utility functions and configurations
+├── helpers/            # Helper functions
+└── types/              # TypeScript type definitions
+```
+
+## Docker Configuration
+
+The project uses Docker for PostgreSQL database. Configuration can be found in:
+
+```
+docker-compose.yaml
+
+name: fsw-donalds
+services:
+  pg:
+    container_name: pg
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: fsw-donalds
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- UI Components powered by Shadcn UI
+- Styling system by Tailwind CSS
+- Database management by Prisma
+- Icons provided by Lucide React
+
+For more information about the components and their usage, check the source code in the repository.

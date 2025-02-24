@@ -1,9 +1,11 @@
+name: fsw-donalds
 services:
-  service-pg:
-    image: bitnami/postgresql
+  pg:
+    container_name: pg
+    image: postgres:latest
     ports:
-      - '5432:5432'
+      - "5432:5432"
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=fsw-donalds
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: fsw-donalds
