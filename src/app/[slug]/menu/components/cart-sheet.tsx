@@ -18,11 +18,19 @@ export const CartSheet = () => {
           <SheetTitle className="text-left">Sacola</SheetTitle>
         </SheetHeader>
 
-        <div className="space-y-4">
-          {products.map(product => (
-            <CartProductItem key={product.id} product={product} />
-          ))}
-        </div>
+        {products.length <= 0 && (
+          <p className="text-center text-sm text-muted-foreground">
+            Nenhum produto adicionado à sacola!
+          </p>
+        )}
+
+        {products.length > 0 && (
+          <div className="space-y-4">
+            {products.map(product => (
+              <CartProductItem key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   )
